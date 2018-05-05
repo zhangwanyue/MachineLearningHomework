@@ -29,7 +29,7 @@ sigma = zeros(1, size(X, 2));
 mu = mean(X);
 sigma = std(X);
 onesMatrix = ones(size(X, 1), 1);
-X_norm = (X_norm - (onesMatrix * mu)).*(1./sigma);
+X_norm = (X_norm - (onesMatrix * mu))./sigma;
 
 % ============================================================
 

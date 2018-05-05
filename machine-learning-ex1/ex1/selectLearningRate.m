@@ -49,9 +49,11 @@ hold on;
 plot(theta2_history_2, J_history_2, '-k', 'LineWidth', 2);
 plot(theta2_history_3, J_history_3, '-y', 'LineWidth', 2);
 plot(theta2_history_4, J_history_4, '-g', 'LineWidth', 2);
-legend('1','1.2');
+legend('0.1','1','1.2');
 % legend('0.01','0.001','0.1','1','1.2');
-title('J(theta(2))')
+xlabel('theta(2)')
+ylabel('J(theta)')
+title('J(theta)')
 
 % Plot the convergence graph
 figure;
