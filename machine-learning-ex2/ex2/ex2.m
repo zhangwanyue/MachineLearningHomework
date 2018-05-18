@@ -95,10 +95,11 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 %  Run fminunc to obtain the optimal theta
 %  This function will return theta and the cost 
-[theta, cost] = ...
+[theta, cost, exitFlag] = ...
 	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
 
 % Print theta to screen
+fprintf('exitFlag: %d\n', exitFlag);
 fprintf('Cost at theta found by fminunc: %f\n', cost);
 fprintf('Expected cost (approx): 0.203\n');
 fprintf('theta: \n');
