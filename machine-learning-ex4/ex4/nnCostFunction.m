@@ -62,25 +62,33 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% 计算unregularized cost function
+z2 = [ones(m, 1) X] * Theta1';
+a2 = sigmoid(z2);
+z3 = [ones(m, 1) a2] * Theta2';
+a3 = sigmoid(z3);
+y = eye(num_labels)(y,:); %另一种写法:y = repmat([1:num_labels], m, 1) == repmat(y, 1, num_labels); %将y的每一个元素转化成[1,0,0,...]
+J = -1/m*sum(sum(y.*log(a3) + (1-y).*log(1-a3)));
 
 
+% 计算regularized cost function
+t1 = Theta1(:,2:end);
+t2 = Theta2(:,2:end);
+J = J + lambda/(2*m) * (sum(sum(t1.^2))+sum(sum((t2.^2))));
 
+% backpropagation
 
+delta_3 = a3 - y; % 5000*10
+delta_2 = delta_3 * Theta2(:,2:end).*sigmoidGradient(z2); % 5000*25
 
+ThetaZero_1 = Theta1;
+ThetaZero_1(:,1) = 0;
+ThetaZero_2 = Theta2;
+ThetaZero_2(:,1) = 0;
 
+Theta1_grad = (1/m) * delta_2' * [ones(m, 1), X] + (lambda/m) * ThetaZero_1; % 25*401
+Theta2_grad = (1/m) * delta_3' * [ones(m, 1), a2] + (lambda/m) * ThetaZero_2; % 10*26
 
-
-
-
-
-
-
-
-
-
-
-
-% -------------------------------------------------------------
 
 % =========================================================================
 
