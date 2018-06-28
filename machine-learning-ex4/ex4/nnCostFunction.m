@@ -74,7 +74,7 @@ J = -1/m*sum(sum(y.*log(a3) + (1-y).*log(1-a3)));
 % 计算regularized cost function
 t1 = Theta1(:,2:end);
 t2 = Theta2(:,2:end);
-J = J + lambda/(2*m) * (sum(sum(t1.^2))+sum(sum((t2.^2))));
+J = J + lambda/(2*m) * (sum(sum(t1.^2))+sum(sum(t2.^2)));
 
 % backpropagation
 
